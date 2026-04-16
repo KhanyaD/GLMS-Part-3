@@ -1,0 +1,39 @@
+@model IEnumerable<ServiceRequest>
+@{
+    ViewData["Title"] = "Service Requests";
+}
+
+<div class="page-header">
+    <h1>Service Requests</h1>
+    <a class="btn" asp-action="Create">Create Request</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Contract</th>
+            <th>Client</th>
+            <th>Description</th>
+            <th>USD</th>
+            <th>Rate</th>
+            <th>ZAR</th>
+            <th>Status</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var request in Model)
+    {
+        <tr>
+            <td>#@request.ContractId</td>
+            <td>@request.Contract?.Client?.Name</td>
+            <td>@request.Description</td>
+            <td>@request.CostUsd</td>
+            <td>@request.ExchangeRateUsed</td>
+            <td>@request.LocalCostZar</td>
+            <td>@request.Status</td>
+            <td>@request.CreatedAtUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+@model Contract
+@{
+    ViewData["Title"] = "Contract Details";
+}
+
+<h1>Contract #@Model.Id</h1>
+
+<div class="detail-grid">
+    <div><strong>Client:</strong> @Model.Client?.Name</div>
+    <div><strong>Region:</strong> @Model.Client?.Region</div>
+    <div><strong>Service Level:</strong> @Model.ServiceLevel</div>
+    <div><strong>Status:</strong> @Model.Status</div>
+    <div><strong>Start Date:</strong> @Model.StartDate.ToShortDateString()</div>
+    <div><strong>End Date:</strong> @Model.EndDate.ToShortDateString()</div>
+    <div>
+        <strong>Signed Agreement:</strong>
+        @if (!string.IsNullOrWhiteSpace(Model.SignedAgreementPath))
+        {
+            <a asp-action="DownloadAgreement" asp-route-id="@Model.Id">Download PDF</a>
+        }
+        else
+        {
+            <span>Not uploaded</span>
+        }
+    </div>
+</div>
+
+<h2>Linked Service Requests</h2>
+@if (Model.ServiceRequests.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>USD</th>
+                <th>ZAR</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.ServiceRequests)
+        {
+            <tr>
+                <td>@item.Description</td>
+                <td>@item.CostUsd</td>
+                <td>@item.LocalCostZar</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No linked service requests yet.</p>
+}

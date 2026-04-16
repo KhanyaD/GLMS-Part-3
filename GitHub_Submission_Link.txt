@@ -1,0 +1,95 @@
+GLMS Part 2 - GitHub Repository Submission
+==========================================
+
+GitHub Repository URL:
+https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
+
+Replace YOUR_USERNAME with your actual GitHub username
+
+
+Instructions to Clone and Run:
+-------------------------------
+1. git clone https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype.git
+2. cd GLMS-Part2-CorePrototype
+3. Open GLMS-Part2.sln in Visual Studio
+4. Press F5 to run (database migrates automatically)
+5. To run tests: Test → Run All Tests
+
+
+Project Details:
+----------------
+Student Name: [Your Full Name]
+Student Number: [Your Student Number]
+Course: Enterprise Software System Development
+Assignment: Part 2 - Core Prototype & Unit Testing
+Date: January 2025
+.NET Version: 8.0
+
+
+Features Implemented:
+---------------------
+✅ Database & Complex Models
+   - Client: Name, ContactDetails, Region
+   - Contract: Linked to Client, dates, status, service level, file upload
+   - ServiceRequest: Linked to Contract, USD/ZAR costs, auto-calculation
+
+✅ File Handling
+   - PDF upload for signed agreements
+   - File validation (only PDF allowed)
+   - Download functionality
+
+✅ Workflow Logic
+   - ServiceRequest blocked if Contract is Expired or OnHold
+   - Date validation
+
+✅ Search/Filter (LINQ)
+   - Filter contracts by date range
+   - Filter contracts by status
+
+✅ External API Integration
+   - Currency Exchange API (ExchangeRate-API)
+   - HttpClient consumption
+   - USD to ZAR auto-calculation
+   - Fallback rate if API unavailable
+
+✅ Unit Testing (xUnit)
+   - 6 unit tests (all passing)
+   - Currency calculation tests
+   - File validation tests
+   - Workflow logic tests
+
+
+Technologies Used:
+------------------
+- ASP.NET Core 8.0 MVC
+- Entity Framework Core 8.0
+- SQL Server LocalDB
+- xUnit Testing Framework
+- HttpClient
+- External API: https://api.exchangerate.host/
+
+
+Submission Contents:
+--------------------
+1. GitHub repository (this link)
+2. Database migration scripts (in Migrations folder)
+3. Test execution screenshots (in Screenshots folder)
+4. Video demonstration (link: _____________ )
+
+
+Notes:
+------
+- All Part 2 requirements completed
+- Code follows best practices
+- Async/await patterns used throughout
+- Proper error handling and validation
+- Comprehensive unit test coverage
+  
+
+
+---
+Include this file in your ARC submission!
+
+git remote add origin https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype.git
+git branch -M main
+git push -u origin main

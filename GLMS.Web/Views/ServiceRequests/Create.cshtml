@@ -1,0 +1,65 @@
+@model ServiceRequestCreateViewModel
+@{
+    ViewData["Title"] = "Create Service Request";
+}
+
+<h1>Create Service Request</h1>
+
+<form asp-action="Create" method="post" class="form-card">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label asp-for="ContractId"></label>
+    <select asp-for="ContractId" asp-items="Model.ActiveContracts" class="input">
+        <option value="">Select contract</option>
+    </select>
+    <span asp-validation-for="ContractId" class="text-danger"></span>
+
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description" class="input" rows="4"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
+
+    <label asp-for="CostUsd"></label>
+    <input asp-for="CostUsd" class="input" id="costUsd" />
+    <span asp-validation-for="CostUsd" class="text-danger"></span>
+
+    <label asp-for="ExchangeRateUsed"></label>
+    <input asp-for="ExchangeRateUsed" class="input" id="exchangeRate" readonly />
+    <span asp-validation-for="ExchangeRateUsed" class="text-danger"></span>
+
+    <label asp-for="LocalCostZar"></label>
+    <input asp-for="LocalCostZar" class="input" id="localCostZar" readonly />
+    <span asp-validation-for="LocalCostZar" class="text-danger"></span>
+
+    <button type="button" class="btn btn-secondary" id="loadRateButton">Load Live USD → ZAR Rate</button>
+    <button type="submit" class="btn">Save Service Request</button>
+</form>
+
+@section Scripts {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const loadRateButton = document.getElementById("loadRateButton");
+    const costUsdInput = document.getElementById("costUsd");
+    const exchangeRateInput = document.getElementById("exchangeRate");
+    const localCostInput = document.getElementById("localCostZar");
+
+    async function refreshCalculation() {
+        const usd = parseFloat(costUsdInput.value || "0");
+        const rate = parseFloat(exchangeRateInput.value || "0");
+        if (!isNaN(usd) && !isNaN(rate) && usd > 0 && rate > 0) {
+            localCostInput.value = (usd * rate).toFixed(2);
+        }
+    }
+
+    loadRateButton.addEventListener("click", async function () {
+        const response = await fetch('@Url.Action("GetUsdToZarRate", "ServiceRequests")');
+        const data = await response.json();
+        if (data && data.rate) {
+            exchangeRateInput.value = parseFloat(data.rate).toFixed(6);
+            refreshCalculation();
+        }
+    });
+
+    costUsdInput.addEventListener("input", refreshCalculation);
+});
+</script>
+}

@@ -1,0 +1,71 @@
+@model ContractFilterViewModel
+@{
+    ViewData["Title"] = "Contracts";
+}
+
+<div class="page-header">
+    <h1>Contracts</h1>
+    <a class="btn" asp-action="Create">Add Contract</a>
+</div>
+
+<form method="get" class="filter-grid">
+    <div>
+        <label>From Date</label>
+        <input type="date" name="fromDate" value="@(Model.FromDate?.ToString("yyyy-MM-dd"))" class="input" />
+    </div>
+    <div>
+        <label>To Date</label>
+        <input type="date" name="toDate" value="@(Model.ToDate?.ToString("yyyy-MM-dd"))" class="input" />
+    </div>
+    <div>
+        <label>Status</label>
+        <select name="status" class="input">
+            <option value="">All</option>
+            @foreach (var status in Enum.GetValues<ContractStatus>())
+            {
+                <option value="@status" selected="@(Model.Status == status)">@status</option>
+            }
+        </select>
+    </div>
+    <div class="actions">
+        <button type="submit" class="btn">Search</button>
+        <a class="btn btn-secondary" asp-action="Index">Clear</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Service Level</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+            <th>Agreement</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var contract in Model.Contracts)
+    {
+        <tr>
+            <td>@contract.Client?.Name</td>
+            <td>@contract.ServiceLevel</td>
+            <td>@contract.StartDate.ToShortDateString()</td>
+            <td>@contract.EndDate.ToShortDateString()</td>
+            <td><span class="badge">@contract.Status</span></td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(contract.SignedAgreementPath))
+                {
+                    <a asp-action="DownloadAgreement" asp-route-id="@contract.Id">Download PDF</a>
+                }
+                else
+                {
+                    <span>No file</span>
+                }
+            </td>
+            <td><a asp-action="Details" asp-route-id="@contract.Id">Details</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

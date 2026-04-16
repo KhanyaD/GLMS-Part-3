@@ -1,0 +1,24 @@
+@model Client
+@{
+    ViewData["Title"] = "Create Client";
+}
+
+<h1>Create Client</h1>
+
+<form asp-action="Create" method="post" class="form-card">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="input" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <label asp-for="ContactDetails"></label>
+    <input asp-for="ContactDetails" class="input" />
+    <span asp-validation-for="ContactDetails" class="text-danger"></span>
+
+    <label asp-for="Region"></label>
+    <input asp-for="Region" class="input" />
+    <span asp-validation-for="Region" class="text-danger"></span>
+
+    <button type="submit" class="btn">Save</button>
+</form>

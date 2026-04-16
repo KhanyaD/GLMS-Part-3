@@ -1,0 +1,38 @@
+@model ContractCreateViewModel
+@{
+    ViewData["Title"] = "Create Contract";
+}
+
+<h1>Create Contract</h1>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="form-card">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label asp-for="ClientId"></label>
+    <select asp-for="ClientId" asp-items="Model.Clients" class="input">
+        <option value="">Select client</option>
+    </select>
+    <span asp-validation-for="ClientId" class="text-danger"></span>
+
+    <label asp-for="StartDate"></label>
+    <input asp-for="StartDate" class="input" />
+    <span asp-validation-for="StartDate" class="text-danger"></span>
+
+    <label asp-for="EndDate"></label>
+    <input asp-for="EndDate" class="input" />
+    <span asp-validation-for="EndDate" class="text-danger"></span>
+
+    <label asp-for="Status"></label>
+    <select asp-for="Status" asp-items="Html.GetEnumSelectList<ContractStatus>()" class="input"></select>
+    <span asp-validation-for="Status" class="text-danger"></span>
+
+    <label asp-for="ServiceLevel"></label>
+    <input asp-for="ServiceLevel" class="input" />
+    <span asp-validation-for="ServiceLevel" class="text-danger"></span>
+
+    <label asp-for="SignedAgreement"></label>
+    <input asp-for="SignedAgreement" type="file" accept=".pdf,application/pdf" class="input" />
+    <span asp-validation-for="SignedAgreement" class="text-danger"></span>
+
+    <button type="submit" class="btn">Save Contract</button>
+</form>

@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <h1>Global Logistics Management System</h1>
+    <p>
+    <div class="cards">
+        <a class="card" asp-controller="Clients" asp-action="Index">
+            <h3>Client Management</h3>
+            <p>Create and manage global logistics clients.</p>
+        </a>
+        <a class="card" asp-controller="Contracts" asp-action="Index">
+            <h3>Contract Hub</h3>
+            <p>Store contracts, upload signed agreements, and filter by status/date.</p>
+        </a>
+        <a class="card" asp-controller="ServiceRequests" asp-action="Index">
+            <h3>Service Requests</h3>
+            <p>Create requests only against valid active contracts and auto-calculate ZAR cost.</p>
+        </a>
+    </div>
+</section>
+
