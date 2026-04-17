@@ -18,8 +18,8 @@ Instructions to Clone and Run:
 
 Project Details:
 ----------------
-Student Name: Kukhanya
-Student Number: Dlanjwa
+Student Name: Kukhanya Dlanjwa
+Student Number: ST10364883
 Course: Enterprise Software System Development
 Assignment: Part 2 - Core Prototype & Unit Testing
 Date: January 2025
