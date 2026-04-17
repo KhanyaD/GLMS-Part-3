@@ -1,8 +1,8 @@
 # GLMS Part 2 - Submission Checklist & Guide
 
-## 📋 **Submission Requirements Overview**
+##  **Submission Requirements Overview**
 
-Based on your Part 2 assignment requirements, you need to submit:
+Based on  Part 2 assignment requirements, you need to submit:
 
 1. ✅ GitHub Repository Link (submitted on ARC)
 2. ✅ Database Migration Scripts
@@ -13,7 +13,7 @@ Based on your Part 2 assignment requirements, you need to submit:
 
 ---
 
-## 🚀 **Step-by-Step Submission Process**
+##  **Step-by-Step Submission Process**
 
 ### **Step 1: Prepare Your GitHub Repository**
 
