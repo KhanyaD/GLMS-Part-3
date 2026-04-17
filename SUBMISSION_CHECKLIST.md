@@ -224,7 +224,7 @@ cd GLMS.Web
 dotnet ef database update
 ```
 
-Or simply run your application (F5) - it applies automatically!
+Or simply run the application (F5) - it applies automatically!
 
 #### 4.2 Capture Database Screenshots
 
@@ -400,7 +400,7 @@ Summarize:
 
 ---
 
-### **Step 6: Organize Your Submission Folder**
+### **Step 6: Organized the Submission Folder**
 
 Create a clean folder structure:
 
@@ -435,7 +435,7 @@ GLMS-Part2-Submission/
 Create `GitHub_Link.txt`:
 
 ```
-GitHub Repository: https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
+GitHub Repository: https://github.com/KhanyaD/GLMS-Part2
 
 Branch: main
 
@@ -461,18 +461,18 @@ Date: January 2025
 
 #### 7.2 Create Submission README
 
-Create `README.md` in your submission folder:
+Create `README.md` in the submission folder:
 
 ```markdown
 # GLMS Part 2 - Core Prototype Submission
 
-**Student:** [Your Name]  
-**Student Number:** [Your Number]  
+**Student:** Kukhanya Dlanjwa  
+**Student Number:** ST10364883 
 **Course:** Enterprise Software System Development  
 **Date:** January 2025
 
 ## GitHub Repository
-https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
+https://github.com/KhanyaD/GLMS-Part2
 
 ## What's Included
 
@@ -516,16 +516,6 @@ https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
 - File upload/download functionality
 - Search/filter demonstration
 
-## Video Demonstration
-[Link to video or file included]
-
-Duration: ~20 minutes
-Contents:
-- Code walkthrough
-- Application demonstration
-- Unit test execution
-- Database verification
-
 ## How to Run
 
 1. Clone repository
@@ -561,10 +551,9 @@ Contents:
 3. **Navigate to Part 2 assignment submission**
 4. **Upload:**
    - ZIP file with screenshots, scripts, README
-   - Video file (or include YouTube link in README)
+   -
 5. **In the submission text box, paste:**
 
-```
 GitHub Repository: https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
 
 Video Demonstration: [YouTube link or "See attached file"]
@@ -635,7 +624,7 @@ See attached screenshots and video demonstration.
 
 ---
 
-## 🎯 **Grading Criteria Checklist**
+##  **Grading Criteria Checklist**
 
 Based on Part 2 requirements:
 
@@ -663,7 +652,7 @@ Based on Part 2 requirements:
 
 ---
 
-## 📞 **Need Help?**
+## 📞 **0734653008?**
 
 ### Common Issues
 
@@ -694,7 +683,7 @@ Based on Part 2 requirements:
 
 ## 🎓 **Success!**
 
-You have everything you need for a complete submission:
+I have everything I need for a complete submission:
 
 ✅ Full working application  
 ✅ All requirements implemented  
@@ -702,12 +691,5 @@ You have everything you need for a complete submission:
 ✅ Unit tests passing  
 ✅ Documentation ready  
 
-**Just need to:**
-1. Push to GitHub
-2. Capture screenshots
-3. Record video
-4. Submit on ARC
 
-**Estimated time to complete submission: 2-3 hours**
-
-Good luck! 🚀
+Good luck! to me🚀
