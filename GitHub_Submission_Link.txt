@@ -2,7 +2,7 @@ GLMS Part 2 - GitHub Repository Submission
 ==========================================
 
 GitHub Repository URL:
-https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype
+https://github.com/KhanyaD/GLMS-Part2
 
 Replace YOUR_USERNAME with your actual GitHub username
 
@@ -18,8 +18,8 @@ Instructions to Clone and Run:
 
 Project Details:
 ----------------
-Student Name: [Your Full Name]
-Student Number: [Your Student Number]
+Student Name: Kukhanya
+Student Number: Dlanjwa
 Course: Enterprise Software System Development
 Assignment: Part 2 - Core Prototype & Unit Testing
 Date: January 2025
@@ -90,6 +90,6 @@ Notes:
 ---
 Include this file in your ARC submission!
 
-git remote add origin https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype.git
+git remote added origal link 
 git branch -M main
 git push -u origin main
