@@ -24,7 +24,7 @@ This Visual Studio solution implements the Part 2 requirements for the Global Lo
      - `Update-Database`
 6. Run the application.
 
-## Suggested screenshots for submission
+#screenshots for submission
 - Home page
 - Clients list / create page
 - Contracts list with filter results
