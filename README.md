@@ -9,7 +9,6 @@ This prototype demonstrates core functionality such as managing clients and serv
 The system is designed following the Model-View-Controller (MVC) architectural pattern to ensure separation of concerns and maintainability.
 
 ## 🎯 Objectives
-
 - Develop a functional ASP.NET Core MVC application
 - Implement full CRUD operations
 - Apply server-side validation and error handling
@@ -139,7 +138,7 @@ dotnet test
 - Database tables (SSMS/Azure)
 - Test Explorer showing all tests passing
 
-## ☁️ Deployment (Optional Enhancement)
+## ☁️ Deployment 
 
 The application can be deployed using:
 
