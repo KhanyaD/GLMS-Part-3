@@ -1,49 +1,43 @@
-using GLMS.Web.Data;
 using GLMS.Web.Models;
 using GLMS.Web.ViewModels;
 using GLMS.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace GLMS.Web.Controllers;
 
 public class ServiceRequestsController : Controller
 {
-    private readonly ApplicationDbContext _context;
-    private readonly ICurrencyApiService _currencyApiService;
+    private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IApiTokenService _tokenService;
     private readonly ICurrencyCalculator _currencyCalculator;
-    private readonly IServiceRequestWorkflowService _workflowService;
 
     public ServiceRequestsController(
-        ApplicationDbContext context,
-        ICurrencyApiService currencyApiService,
-        ICurrencyCalculator currencyCalculator,
-        IServiceRequestWorkflowService workflowService)
+        IHttpClientFactory httpClientFactory,
+        IApiTokenService tokenService,
+        ICurrencyCalculator currencyCalculator)
     {
-        _context = context;
-        _currencyApiService = currencyApiService;
+        _httpClientFactory = httpClientFactory;
+        _tokenService = tokenService;
         _currencyCalculator = currencyCalculator;
-        _workflowService = workflowService;
     }
 
     public async Task<IActionResult> Index()
     {
-        var requests = await _context.ServiceRequests
-            .Include(sr => sr.Contract)
-            .ThenInclude(c => c!.Client)
-            .OrderByDescending(sr => sr.CreatedAtUtc)
-            .ToListAsync();
+        var apiClient = await CreateAuthorizedClientAsync();
+        var requests = await apiClient.GetFromJsonAsync<List<ServiceRequest>>("api/service-requests", JsonOptions) ?? [];
 
-        return View(requests);
+        return View(requests.OrderByDescending(sr => sr.CreatedAtUtc).ToList());
     }
 
     public async Task<IActionResult> Create()
     {
-        var contracts = await _context.Contracts
-            .Include(c => c.Client)
-            .OrderByDescending(c => c.StartDate)
-            .ToListAsync();
+        var apiClient = await CreateAuthorizedClientAsync();
+        var contracts = await apiClient.GetFromJsonAsync<List<Contract>>("api/contracts", JsonOptions) ?? [];
 
         var vm = new ServiceRequestCreateViewModel
         {
@@ -60,7 +54,9 @@ public class ServiceRequestsController : Controller
     [HttpGet]
     public async Task<IActionResult> GetUsdToZarRate()
     {
-        var result = await _currencyApiService.GetUsdToZarRateAsync();
+        var apiClient = await CreateAuthorizedClientAsync();
+        var result = await apiClient.GetFromJsonAsync<CurrencyApiResultDto>("api/service-requests/usd-zar-rate", JsonOptions)
+            ?? new CurrencyApiResultDto { Success = false, ErrorMessage = "Unable to retrieve exchange rate." };
         return Json(result);
     }
 
@@ -68,32 +64,22 @@ public class ServiceRequestsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(ServiceRequestCreateViewModel model)
     {
-        model.ActiveContracts = await _context.Contracts
-            .Include(c => c.Client)
+        var apiClient = await CreateAuthorizedClientAsync();
+        var contracts = await apiClient.GetFromJsonAsync<List<Contract>>("api/contracts", JsonOptions) ?? [];
+
+        model.ActiveContracts = contracts
             .OrderByDescending(c => c.StartDate)
             .Select(c => new SelectListItem
             {
                 Value = c.Id.ToString(),
                 Text = $"#{c.Id} - {c.Client!.Name} [{c.Status}]"
             })
-            .ToListAsync();
-
-        var contract = await _context.Contracts
-            .Include(c => c.Client)
-            .FirstOrDefaultAsync(c => c.Id == model.ContractId);
-
-        if (contract is null)
-        {
-            ModelState.AddModelError(nameof(model.ContractId), "Selected contract does not exist.");
-        }
-        else if (!_workflowService.CanCreateRequest(contract, out var workflowError))
-        {
-            ModelState.AddModelError(nameof(model.ContractId), workflowError ?? "This contract cannot accept service requests.");
-        }
+            .ToList();
 
         if (model.ExchangeRateUsed <= 0)
         {
-            var rateResult = await _currencyApiService.GetUsdToZarRateAsync();
+            var rateResult = await apiClient.GetFromJsonAsync<CurrencyApiResultDto>("api/service-requests/usd-zar-rate", JsonOptions)
+                ?? new CurrencyApiResultDto { Success = false };
             model.ExchangeRateUsed = rateResult.Rate;
         }
 
@@ -107,20 +93,39 @@ public class ServiceRequestsController : Controller
             return View(model);
         }
 
-        var request = new ServiceRequest
+        var payload = new
         {
-            ContractId = model.ContractId,
-            Description = model.Description,
-            CostUsd = model.CostUsd,
-            ExchangeRateUsed = model.ExchangeRateUsed,
-            LocalCostZar = model.LocalCostZar,
-            Status = model.Status
+            model.ContractId,
+            model.Description,
+            model.CostUsd,
+            model.ExchangeRateUsed,
+            model.Status
         };
 
-        _context.ServiceRequests.Add(request);
-        await _context.SaveChangesAsync();
+        using var response = await apiClient.PostAsJsonAsync("api/service-requests", payload);
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync();
+            ModelState.AddModelError(nameof(model.ContractId), string.IsNullOrWhiteSpace(error) ? "Unable to create service request." : error);
+            return View(model);
+        }
 
         TempData["Success"] = "Service request created successfully.";
         return RedirectToAction(nameof(Index));
+    }
+
+    private async Task<HttpClient> CreateAuthorizedClientAsync(CancellationToken cancellationToken = default)
+    {
+        var client = _httpClientFactory.CreateClient("BackendApi");
+        var token = await _tokenService.GetAccessTokenAsync(cancellationToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        return client;
+    }
+
+    private sealed class CurrencyApiResultDto
+    {
+        public bool Success { get; set; }
+        public decimal Rate { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }

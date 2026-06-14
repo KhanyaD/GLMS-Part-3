@@ -2,26 +2,23 @@ using System.Text.Json;
 
 namespace GLMS.Web.Services;
 
-public class CurrencyApiService : ICurrencyApiService
+public class CurrencyApiService(HttpClient httpClient, IConfiguration configuration, ILogger<CurrencyApiService> logger) : ICurrencyApiService
 {
-    private readonly HttpClient _httpClient;
-    private readonly IConfiguration _configuration;
-    private readonly ILogger<CurrencyApiService> _logger;
-
-    public CurrencyApiService(HttpClient httpClient, IConfiguration configuration, ILogger<CurrencyApiService> logger)
-    {
-        _httpClient = httpClient;
-        _configuration = configuration;
-        _logger = logger;
-    }
-
     public async Task<CurrencyApiResult> GetUsdToZarRateAsync(CancellationToken cancellationToken = default)
     {
-        var endpoint = _configuration["CurrencyApi:LatestEndpoint"] ?? "latest?base=USD&symbols=ZAR";
+        var endpoint = configuration["CurrencyApi:LatestEndpoint"] ?? "latest?base=USD&symbols=ZAR";
+        var apiKey = configuration["CurrencyApi:ApiKey"];
+
+        // Add API key to endpoint if provided
+        if (!string.IsNullOrEmpty(apiKey))
+        {
+            endpoint += endpoint.Contains('?') ? "&" : "?";
+            endpoint += $"access_key={apiKey}";
+        }
 
         try
         {
-            using var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+            using var response = await httpClient.GetAsync(endpoint, cancellationToken);
             response.EnsureSuccessStatusCode();
 
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
@@ -48,7 +45,7 @@ public class CurrencyApiService : ICurrencyApiService
         }
         catch (Exception ex)
         {
-            _logger.LogWarning(ex, "Falling back to the default exchange rate.");
+            logger.LogWarning(ex, "Falling back to the default exchange rate.");
             return new CurrencyApiResult
             {
                 Success = true,

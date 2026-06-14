@@ -1,95 +1,70 @@
-GLMS Part 2 - GitHub Repository Submission
+GLMS Part 3 - GitHub Repository Submission
 ==========================================
 
 GitHub Repository URL:
 https://github.com/KhanyaD/GLMS-Part2
 
-Replace YOUR_USERNAME with your actual GitHub username
+Student: Kukhanya Dlanjwa
+IIE Rosebank College
+Module: Enterprise Application Development
+Assessment: POE Part 3 - Modernisation, Docker and Automated Testing
+Date: June 2026
 
 
-Instructions to Clone and Run:
--------------------------------
-1. git clone https://github.com/YOUR_USERNAME/GLMS-Part2-CorePrototype.git
-2. cd GLMS-Part2-CorePrototype
-3. Open GLMS-Part2.sln in Visual Studio
-4. Press F5 to run (database migrates automatically)
-5. To run tests: Test → Run All Tests
+Part 3 Deliverables Included:
+-----------------------------
+1. Refactored architecture with separate projects:
+   - GLMS.Web (MVC frontend)
+   - GLMS.Api (backend Web API)
+   - GLMS.Tests (unit and integration tests)
 
+2. Backend API with:
+   - GET /api/contracts (filtering support)
+   - POST /api/contracts
+   - PATCH /api/contracts/{id}/status
+   - Additional endpoints for clients and service requests
+   - Swagger/OpenAPI enabled
+   - JWT authentication
 
-Project Details:
-----------------
-Student Name: Kukhanya Dlanjwa
-Student Number: ST10364883
-Course: Enterprise Software System Development
-Assignment: Part 2 - Core Prototype & Unit Testing
-Date: January 2025
-.NET Version: 8.0
+3. MVC frontend refactored to call API using HttpClient (no direct DB access in MVC controllers).
 
+4. Automated testing:
+   - Unit tests
+   - API integration tests (including GET /api/contracts response assertions)
 
-Features Implemented:
----------------------
-✅ Database & Complex Models
-   - Client: Name, ContactDetails, Region
-   - Contract: Linked to Client, dates, status, service level, file upload
-   - ServiceRequest: Linked to Contract, USD/ZAR costs, auto-calculation
+5. Containerization:
+   - API Dockerfile
+   - Web Dockerfile
+   - docker-compose.yml for:
+     - sql-server-db
+     - glms-backend-api
+     - glms-frontend-web
 
-✅ File Handling
-   - PDF upload for signed agreements
-   - File validation (only PDF allowed)
-   - Download functionality
+6. Documentation and submission artifacts:
+   - Part 3 Technical Reflection Report PDF
+   - Part 3 Screenshot Checklist PDF
+   - Part 3 Video Script PDF
+   - Evidence screenshots in Screenshots folder
+   - Demo video link: [PASTE YOUR VIDEO LINK HERE]
 
-✅ Workflow Logic
-   - ServiceRequest blocked if Contract is Expired or OnHold
-   - Date validation
+Run Instructions:
+-----------------
+1. Clone repository:
+   git clone https://github.com/KhanyaD/GLMS-Part2.git
 
-✅ Search/Filter (LINQ)
-   - Filter contracts by date range
-   - Filter contracts by status
+2. Open solution:
+   GLMS-Part2.sln
 
-✅ External API Integration
-   - Currency Exchange API (ExchangeRate-API)
-   - HttpClient consumption
-   - USD to ZAR auto-calculation
-   - Fallback rate if API unavailable
+3. Run tests:
+   dotnet test GLMS-Part2.sln -c Debug
 
-✅ Unit Testing (xUnit)
-   - 6 unit tests (all passing)
-   - Currency calculation tests
-   - File validation tests
-   - Workflow logic tests
+4. Run Docker stack:
+   docker compose up --build
 
-
-Technologies Used:
-------------------
-- ASP.NET Core 8.0 MVC
-- Entity Framework Core 8.0
-- SQL Server LocalDB
-- xUnit Testing Framework
-- HttpClient
-- External API: https://api.exchangerate.host/
-
-
-Submission Contents:
---------------------
-1. GitHub repository (this link)
-2. Database migration scripts (in Migrations folder)
-3. Test execution screenshots (in Screenshots folder)
-4. Video demonstration (link: _____________ )
-
-
-Notes:
-------
-- All Part 2 requirements completed
-- Code follows best practices
-- Async/await patterns used throughout
-- Proper error handling and validation
-- Comprehensive unit test coverage
-  
+5. Access apps:
+   - Frontend: http://localhost:8080
+   - API Swagger: http://localhost:8081/swagger
 
 
 ---
-Include this file in your ARC submission!
-
-git remote added origal link 
-git branch -M main
-git push -u origin main
+Include this file in your ARC submission.

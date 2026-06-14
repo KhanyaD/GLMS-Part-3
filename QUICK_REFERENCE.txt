@@ -1,0 +1,71 @@
+╔═══════════════════════════════════════════════════════════════╗
+║             📸 QUICK SCREENSHOT REFERENCE CARD 📸             ║
+╚═══════════════════════════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────────────────────┐
+│  KEYBOARD SHORTCUTS                                           │
+├───────────────────────────────────────────────────────────────┤
+│  Win + Shift + S     →  Take Screenshot                       │
+│  Ctrl + E, T         →  Open Test Explorer                    │
+│  Ctrl + \, Ctrl + S  →  Open SQL Server Object Explorer       │
+│  F5                  →  Run Application                        │
+│  Ctrl + V            →  Paste screenshot (in Paint)            │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  REQUIRED SCREENSHOTS (MUST HAVE)                             │
+├───────────────────────────────────────────────────────────────┤
+│  ☐  TestExplorer_AllPassing.png                               │
+│  ☐  Database_Tables.png                                       │
+│  ☐  Database_Clients.png                                      │
+│  ☐  Database_Contracts.png                                    │
+│  ☐  Database_ServiceRequests.png                              │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  CLIENT CRUD SCREENSHOTS (FOR FULL MARKS)                     │
+├───────────────────────────────────────────────────────────────┤
+│  ☐  App_ClientsList.png        → Proves READ                  │
+│  ☐  App_CreateClient.png       → Proves CREATE                │
+│  ☐  App_EditClient.png          → Proves UPDATE (Optional)    │
+│  ☐  (Delete is shown in list)   → Proves DELETE               │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  BONUS SCREENSHOTS (HIGHLY RECOMMENDED)                       │
+├───────────────────────────────────────────────────────────────┤
+│  ☐  App_HomePage.png                                          │
+│  ☐  App_CreateContract.png     → Shows file upload            │
+│  ☐  App_ServiceRequest.png     → Shows API integration        │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  SAVE LOCATION                                                │
+├───────────────────────────────────────────────────────────────┤
+│  C:\Users\Kukhanya\GLMS-Part2-VisualStudio-fixed\            │
+│  GLMS-Part2\Screenshots\                                      │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  AFTER TAKING SCREENSHOTS                                     │
+├───────────────────────────────────────────────────────────────┤
+│  1. git add Screenshots/                                      │
+│  2. git commit -m "Add all submission screenshots"            │
+│  3. git push origin master                                    │
+│  4. Verify: github.com/KhanyaD/GLMS-Part2                    │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  SCREENSHOT TIPS                                              │
+├───────────────────────────────────────────────────────────────┤
+│  ✓ Make sure all text is readable                            │
+│  ✓ Capture the entire window/panel                           │
+│  ✓ Save as PNG (best quality)                                │
+│  ✓ File names must match exactly                             │
+│  ✓ Check each screenshot before moving to next                │
+└───────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════╗
+║  ⏱️  TOTAL TIME: 20 MINUTES                                   ║
+║  🎯  GOAL: 12 SCREENSHOTS FOR COMPLETE SUBMISSION             ║
+╚═══════════════════════════════════════════════════════════════╝

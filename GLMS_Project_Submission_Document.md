@@ -1,8 +1,8 @@
 # Global Logistics Management System (GLMS) - Project Submission
 
 ## Student Information
-**Student Name:** [Your Name]  
-**Student Number:** [Your Student Number]  
+**Student Name:** Kukhanya Dlanjwa  
+**Student Number:** ST10158643  
 **Module:** Programming 2B / PROG6212  
 **Submission Date:** January 2025  
 **Project:** Part 2 - The Core Prototype & Unit Testing
@@ -299,7 +299,21 @@ dotnet test
 dotnet test --collect:"XPlat Code Coverage"
 ```
 
-**Test Results:** All tests passing ✅
+**Test Results:** All 6 tests passing ✅
+
+#### Test Explorer Screenshot
+
+![Test Explorer - All Tests Passing](Screenshots/TestExplorer_AllPassing.png)
+
+**Figure: Visual Studio Test Explorer showing all 6 unit tests passing successfully**
+
+Tests included:
+- ✅ CurrencyCalculatorTests.ConvertUsdToZar_ReturnsRoundedExpectedValue
+- ✅ CurrencyCalculatorTests.ConvertUsdToZar_Throws_WhenRateIsInvalid
+- ✅ FileValidationServiceTests.ValidatePdf_AllowsPdfFiles
+- ✅ FileValidationServiceTests.ValidatePdf_ThrowsForExeFiles
+- ✅ ServiceRequestWorkflowServiceTests.CanCreateRequest_ReturnsTrue_ForActiveContract
+- ✅ ServiceRequestWorkflowServiceTests.CanCreateRequest_ReturnsFalse_ForExpiredContract
 
 ---
 
@@ -314,7 +328,7 @@ dotnet test --collect:"XPlat Code Coverage"
 
 1. **Clone the Repository**
    ```bash
-   git clone [YOUR-REPOSITORY-URL]
+   git clone https://github.com/KukhanyaDlanjwa/GLMS-Part2.git
    cd GLMS-Part2
    ```
 
@@ -355,7 +369,7 @@ Or run the SQL script:
 
 ## GitHub Repository
 
-**Repository URL:** [INSERT YOUR GITHUB REPOSITORY URL HERE]
+**Repository URL:** https://github.com/KhanyaD/GLMS-Part2
 
 ### Repository Structure
 ```
@@ -505,3 +519,17 @@ I declare that this is my original work. All sources have been properly acknowle
 ---
 
 *This document serves as the official submission for GLMS Part 2. Please ensure all sections are complete before submission.*
+
+□ 1. Open Test Explorer → Run All Tests → Screenshot ✅ (2 min)
+□ 2. Make GitHub repo Public (1 min)
+□ 3. Add your student number to submission document (30 sec)
+□ 4. Take database screenshots (5 min)
+□ 5. Insert all screenshots into submission document (10 min)
+□ 6. Commit and push everything to GitHub (2 min)
+□ 7. Verify repo is public and README shows correctly (2 min)
+□ 8. (Optional) Record and upload video (30-60 min)
+
+```bash
+git add Screenshots/
+git commit -m "Add Client CRUD screenshots"
+git push origin master

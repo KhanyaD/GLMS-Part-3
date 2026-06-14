@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GLMS</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -25,6 +38,17 @@
         }
         @RenderBody()
     </main>
+
+    <!-- Footer matching top navbar style -->
+    <footer style="background: #0f172a; color: white; padding: 1rem 0; margin-top: 2rem;">
+        <div class="container">
+            <div class="text-center">
+                <p style="margin: 0; font-size: 0.9rem;">
+                    &copy; 2025 Global Logistics Management System | <strong>Kukhanya Dlanjwa</strong>
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

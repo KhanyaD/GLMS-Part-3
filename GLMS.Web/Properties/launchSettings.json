@@ -7,6 +7,24 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:62348;http://localhost:62349"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:59323/",
+      "sslPort": 44385  
+    }
+  },
+  "connectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=GLMS.Web;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }

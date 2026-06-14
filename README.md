@@ -127,6 +127,69 @@ Run tests from **Test Explorer** in Visual Studio or use:
 dotnet test
 ```
 
+## 🚀 Part 3 (Modernisation, Docker, CI/CD)
+
+This repository includes the Part 3 architecture:
+
+- `GLMS.Api` as the backend service layer (DB access + business logic)
+- `GLMS.Web` as the MVC frontend that calls API endpoints via `HttpClient`
+- JWT authentication for API access
+- Automated integration tests in `GLMS.Tests`
+- Dockerfiles for API and Web + `docker-compose.yml` for full stack orchestration
+- GitHub Actions workflow in `.github/workflows/ci-cd.yml`
+
+### Run Part 3 Locally (Docker)
+
+1. Start Docker Desktop.
+2. From solution root, run:
+
+```bash
+docker compose up --build -d
+```
+
+3. Verify containers:
+
+```bash
+docker compose ps
+```
+
+4. Access services:
+
+- Frontend MVC: `http://localhost:8080`
+- Backend API (Swagger): `http://localhost:8081/swagger`
+
+5. Stop containers when done:
+
+```bash
+docker compose down
+```
+
+### Run Tests (Part 3)
+
+```bash
+dotnet test GLMS-Part2.sln -c Debug
+```
+
+### CI/CD
+
+Push to GitHub to trigger the workflow:
+
+- Build and test solution
+- Publish test artifacts (`.trx`)
+- Validate Docker Compose config
+- Build API and Web images
+
+### Part 3 Evidence Checklist
+
+- Docker Desktop showing running containers:
+  - `sql-server-db`
+  - `glms-backend-api`
+  - `glms-frontend-web`
+- Browser screenshot of frontend at `http://localhost:8080`
+- Browser screenshot of Swagger at `http://localhost:8081/swagger`
+- Test Explorer or terminal screenshot showing tests passing
+- GitHub Actions workflow run showing success
+- Optional: `docker compose ps` terminal output screenshot
 ## 📸 Suggested Screenshots for Submission
 
 - Application Home Page
@@ -138,7 +201,7 @@ dotnet test
 - Database tables (SSMS/Azure)
 - Test Explorer showing all tests passing
 
-## ☁️ Deployment 
+## ☁️ Deployment (Optional Enhancement)
 
 The application can be deployed using:
 
@@ -178,5 +241,6 @@ IIE Rosebank College
 
 This project is developed for educational purposes.
 
+---
 
-
+⭐ **If you found this project helpful, please consider giving it a star!**

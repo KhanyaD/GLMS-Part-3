@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["GLMS.Api/GLMS.Api.csproj", "GLMS.Api/"]
+RUN dotnet restore "GLMS.Api/GLMS.Api.csproj"
+COPY . .
+WORKDIR "/src/GLMS.Api"
+RUN dotnet build "GLMS.Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "GLMS.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "GLMS.Api.dll"]
