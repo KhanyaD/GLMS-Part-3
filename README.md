@@ -1,4 +1,4 @@
-﻿# GLMS Part 3 - Modernisation, Docker, and CI/CD
+﻿# GLMS Part 3 - Modernizations Docker & Automated Testing
 
 ## Project Overview
 
